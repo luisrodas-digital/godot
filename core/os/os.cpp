@@ -642,6 +642,12 @@ void OS::set_has_server_feature_callback(HasServerFeatureCallback p_callback) {
 	has_server_feature_callback = p_callback;
 }
 
+// Expose this function to JavaScript.
+void OS::sync_storage(){}
+
+// Expose this function to JavaScript.
+bool OS::is_sync_storage(){return false;}
+
 bool OS::has_feature(const String &p_feature) {
 	if (p_feature == get_name()) {
 		return true;

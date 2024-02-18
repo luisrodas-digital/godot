@@ -92,7 +92,7 @@ private:
 	void process_joypads();
 
 	static void file_access_close_callback(const String &p_file, int p_flags);
-
+	
 	static void request_quit_callback();
 	static void window_blur_callback();
 	static void drop_files_callback(char **p_filev, int p_filec);
@@ -200,6 +200,9 @@ public:
 
 	virtual bool is_userfs_persistent() const;
 	Error open_dynamic_library(const String p_path, void *&p_library_handle, bool p_also_set_library_path);
+	// Expose this function to JavaScript.
+	virtual void sync_storage();
+	virtual bool is_sync_storage();
 	OS_JavaScript();
 };
 

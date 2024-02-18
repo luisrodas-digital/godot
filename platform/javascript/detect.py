@@ -237,3 +237,5 @@ def configure(env):
 
     # Add code that allow exiting runtime.
     env.Append(LINKFLAGS=["-s", "EXIT_RUNTIME=1"])
+
+    env.Append(LINKFLAGS=["-s", "WASM_BIGINT=1"])

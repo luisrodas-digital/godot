@@ -19,7 +19,8 @@ thirdparty_sources = [thirdparty_dir + file for file in thirdparty_sources]
 env_tinyexr.Prepend(CPPPATH=[thirdparty_dir])
 
 # Enable threaded loading with C++11.
-env_tinyexr.Append(CPPDEFINES=["TINYEXR_USE_THREAD"])
+# Desable thread support for now, as it is not supported by emscripten.
+# env_tinyexr.Append(CPPDEFINES=["TINYEXR_USE_THREAD"])
 # miniz is an external dependency, we could add it but we can instead rely
 # on our existing bundled zlib.
 env_tinyexr.Append(CPPDEFINES=[("TINYEXR_USE_MINIZ", 0)])

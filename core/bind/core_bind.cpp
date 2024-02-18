@@ -653,6 +653,15 @@ bool _OS::has_feature(const String &p_feature) const {
 	return OS::get_singleton()->has_feature(p_feature);
 }
 
+// Expose this function to JavaScript.
+void _OS::sync_storage() {
+	OS::get_singleton()->sync_storage();
+}
+
+bool _OS::is_sync_storage() {
+	return OS::get_singleton()->is_sync_storage();
+}
+
 /*
 enum Weekday {
 	DAY_SUNDAY,
@@ -1455,6 +1464,10 @@ void _OS::_bind_methods() {
 	ClassDB::bind_method(D_METHOD("is_delta_smoothing_enabled"), &_OS::is_delta_smoothing_enabled);
 
 	ClassDB::bind_method(D_METHOD("has_feature", "tag_name"), &_OS::has_feature);
+	
+	// Expose this function to JavaScript.
+	ClassDB::bind_method(D_METHOD("sync_storage"), &_OS::sync_storage);
+	ClassDB::bind_method(D_METHOD("is_sync_storage"), &_OS::is_sync_storage);
 
 	ClassDB::bind_method(D_METHOD("get_power_state"), &_OS::get_power_state);
 	ClassDB::bind_method(D_METHOD("get_power_seconds_left"), &_OS::get_power_seconds_left);

@@ -392,6 +392,10 @@ public:
 
 	bool has_feature(const String &p_feature) const;
 
+	// Expose this function to JavaScript.
+	virtual void sync_storage();
+	virtual bool is_sync_storage();
+
 	bool request_permission(const String &p_name);
 	bool request_permissions();
 	Vector<String> get_granted_permissions() const;

@@ -188,7 +188,8 @@ const GodotFS = {
 			}
 			GodotFS._syncing = true;
 			return new Promise(function (resolve, reject) {
-				FS.syncfs(false, function (error) {
+				// Force sync to IDBFS.
+				FS.syncfs(true, function (error) {
 					if (error) {
 						GodotRuntime.error(`Failed to save IDB file system: ${error.message}`);
 					}

@@ -600,6 +600,8 @@ public:
 
 	virtual void force_process_input(){};
 	bool has_feature(const String &p_feature);
+	virtual void sync_storage();
+	virtual bool is_sync_storage();
 
 	void set_has_server_feature_callback(HasServerFeatureCallback p_callback);
 

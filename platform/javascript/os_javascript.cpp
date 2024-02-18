@@ -1047,6 +1047,18 @@ void OS_JavaScript::file_access_close_callback(const String &p_file, int p_flags
 	}
 }
 
+// Expose this function to JavaScript.
+void OS_JavaScript::sync_storage() {
+	OS_JavaScript *os = get_singleton();
+	os->idb_needs_sync = true;
+}
+
+// Expose this function to JavaScript.
+bool OS_JavaScript::is_sync_storage() {
+	OS_JavaScript *os = get_singleton();
+	return os->idb_needs_sync || os->idb_is_syncing;
+}
+
 void OS_JavaScript::update_pwa_state_callback() {
 	if (OS_JavaScript::get_singleton()) {
 		OS_JavaScript::get_singleton()->pwa_is_waiting = true;

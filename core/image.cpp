@@ -2537,6 +2537,7 @@ ImageMemLoadFunc Image::_jpg_mem_loader_func = nullptr;
 ImageMemLoadFunc Image::_webp_mem_loader_func = nullptr;
 ImageMemLoadFunc Image::_tga_mem_loader_func = nullptr;
 ImageMemLoadFunc Image::_bmp_mem_loader_func = nullptr;
+ImageMemLoadFunc Image::_exr_mem_loader_func = nullptr;
 
 void (*Image::_image_compress_bc_func)(Image *, float, Image::CompressSource) = nullptr;
 void (*Image::_image_compress_bptc_func)(Image *, float, Image::CompressSource) = nullptr;
@@ -2977,6 +2978,7 @@ void Image::_bind_methods() {
 	ClassDB::bind_method(D_METHOD("load_webp_from_buffer", "buffer"), &Image::load_webp_from_buffer);
 	ClassDB::bind_method(D_METHOD("load_tga_from_buffer", "buffer"), &Image::load_tga_from_buffer);
 	ClassDB::bind_method(D_METHOD("load_bmp_from_buffer", "buffer"), &Image::load_bmp_from_buffer);
+	ClassDB::bind_method(D_METHOD("load_exr_from_buffer", "buffer"), &Image::load_exr_from_buffer);
 
 	ADD_PROPERTY(PropertyInfo(Variant::DICTIONARY, "data", PROPERTY_HINT_NONE, "", PROPERTY_USAGE_STORAGE), "_set_data", "_get_data");
 
@@ -3292,6 +3294,11 @@ Error Image::load_jpg_from_buffer(const PoolVector<uint8_t> &p_array) {
 
 Error Image::load_webp_from_buffer(const PoolVector<uint8_t> &p_array) {
 	return _load_from_buffer(p_array, _webp_mem_loader_func);
+}
+
+Error Image::load_exr_from_buffer(const PoolVector<uint8_t> &p_array) {
+	ERR_FAIL_NULL_V_MSG(_exr_mem_loader_func, ERR_UNAVAILABLE, "EXR module was not installed.");
+	return _load_from_buffer(p_array, _exr_mem_loader_func);
 }
 
 Error Image::load_tga_from_buffer(const PoolVector<uint8_t> &p_array) {
